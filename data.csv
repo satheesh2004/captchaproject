@@ -1,0 +1,18 @@
+mouseMovements,screenWidth,screenHeight,browserName,userAgent,language,timeOnPage,clicks,keyPresses,referrer,label
+150,1920,1080,Chrome,"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",en-US,120,5,10,"https://example.com",0
+200,1366,768,Firefox,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",en-GB,90,8,15,"https://google.com",1
+250,1440,900,Edge,"Mozilla/5.0 (Windows NT 10.0; Win64; x64)",fr-FR,180,12,20,"https://bing.com",0
+443,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,12,6,0,http://127.0.0.1:5500/index.html
+349,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,16,5,0,http://127.0.0.1:5500/index.html
+338,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,9,5,0,http://127.0.0.1:5500/index.html
+373,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,94,5,0,http://127.0.0.1:5500/index.html
+289,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,14,11,0,
+139,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,9,5,0,
+417,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,18,5,0,
+334,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,13,5,0,
+449,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,15,5,0,
+141,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,7,5,0,
+424,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,12,5,0,
+183,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,10,7,0,http://127.0.0.1:5500/index.html
+347,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,12,5,0,
+340,1536,864,Chrome,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36,en-US,197,5,0,

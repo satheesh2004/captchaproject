@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click in Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        .btn {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+        #btn1 { top: 10px; left: 10px; }
+        #btn2 { top: 10px; right: 10px; }
+        #btn3 { bottom: 10px; left: 10px; }
+        #btn4 { bottom: 10px; right: 10px; }
+        #btn5 { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #fff;
+            text-align: center;
+        }
+        #submit-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button id="btn1" class="btn">1</button>
+    <button id="btn2" class="btn">2</button>
+    <button id="btn3" class="btn">3</button>
+    <button id="btn4" class="btn">4</button>
+    <button id="btn5" class="btn">5</button>
+</div>
+<div id="message"></div>
+<div id="result"></div>
+<button id="submit-btn">Submit</button>
+
+<script>
+    function getBrowserName() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Chrome") > -1) {
+            return "Chrome";
+        } else if (userAgent.indexOf("Safari") > -1) {
+            return "Safari";
+        } else if (userAgent.indexOf("Firefox") > -1) {
+            return "Firefox";
+        } else {
+            return "Other";
+        }
+    }
+
+    // Parameters object
+    let parameters = {
+        mouseMovements: [],
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        browserName: getBrowserName(),
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        timeOnPage: 0,
+        clicks: 0,
+        keyPresses: 0,
+        referrer: document.referrer,
+    };
+
+    // Collecting mouse movements
+    document.addEventListener('mousemove', (e) => {
+        parameters.mouseMovements.push({
+            x: e.clientX,
+            y: e.clientY,
+            timestamp: Date.now()
+        });
+    });
+
+    // Collecting clicks
+    document.addEventListener('click', () => {
+        parameters.clicks++;
+    });
+
+    // Collecting keypresses
+    document.addEventListener('keydown', () => {
+        parameters.keyPresses++;
+    });
+
+    // Tracking time spent on the page
+    setInterval(() => {
+        parameters.timeOnPage++;
+    }, 1000);
+
+    // Button click puzzle logic
+    const correctOrder = [1, 2, 3, 4, 5];
+    let currentStep = 0;
+
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const clickedNumber = parseInt(this.textContent);
+
+            if (clickedNumber === correctOrder[currentStep]) {
+                currentStep++;
+                this.disabled = true;
+                this.style.backgroundColor = '#28a745';
+
+                if (currentStep === correctOrder.length) {
+                    document.getElementById('message').textContent = "Puzzle Solved! Click submit to send data.";
+                    document.getElementById('submit-btn').style.display = "block";
+                }
+            } else {
+                alert('Wrong order! Please start again.');
+                resetButtons();
+            }
+        });
+    });
+
+    // Function to reset the puzzle
+    function resetButtons() {
+        currentStep = 0;
+        document.querySelectorAll('.btn').forEach(button => {
+            button.disabled = false;
+            button.style.backgroundColor = '#007bff';
+        });
+        document.getElementById('submit-btn').style.display = "none";
+        document.getElementById('message').textContent = "";
+        document.getElementById('result').textContent = "";
+    }
+
+    // Submit data to server
+    document.getElementById('submit-btn').addEventListener('click', () => {
+        fetch('http://localhost:5000/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(parameters),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const prediction = data.prediction === 0 ? 'You are a bot!' : 'You are a human!';
+            document.getElementById('result').textContent = `Prediction: ${prediction}`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error submitting data.');
+        });
+    });
+
+    // Log data to console every 5 seconds (for debugging)
+    setInterval(() => {
+        console.log("Current parameters: ", parameters);
+    }, 5000);
+</script>
+
+</body>
+</html>
